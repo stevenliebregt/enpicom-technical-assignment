@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import {HttpError} from "http-errors";
+import { HttpError } from "http-errors";
 
 //TODO improve, maybe differentiate between operational and http errors
 export default function errorMiddleware(error: HttpError, request: Request, response: Response, next: NextFunction) {
