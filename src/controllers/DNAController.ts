@@ -1,6 +1,6 @@
 import express from 'express';
+import HttpError from '../errors/HttpError';
 import DNAService from "../services/DNAService";
-import createHttpError from "http-errors";
 
 export default class DNAController {
 
@@ -8,24 +8,27 @@ export default class DNAController {
 
     constructor() {
         this.dnaService = new DNAService();
-    }
+    };
 
     //TODO add body validation
     search = async (req: express.Request, res: express.Response, next: express.NextFunction) => {
+
         const { id } = req.params;
-        try {
-            res.json(await this.dnaService.search(id, 3));
-        } catch (err) {
-            next(createHttpError(404, err.message));
-        }
-    }
+
+        await this.dnaService.search(id, 3).then(result => {
+            res.json(result);
+        }).catch(error => {
+            next(new HttpError(400, error.message));
+        });
+    };
 
     //TODO add body validation
     create = async (req: express.Request, res: express.Response, next: express.NextFunction) => {
-        try {
-            res.status(201).json((await this.dnaService.create(req.body)));
-        } catch (err) {
-            next(createHttpError(404, err.message));
-        }
-    }
+
+        await this.dnaService.create(req.body).then(result => {
+            res.status(201).json(result);
+        }).catch(error => {
+            next(new HttpError(400, error.message));
+        });
+    };
 }

@@ -8,7 +8,7 @@ export default class DNAService {
             throw new Error('Items could not be retrieved');
         }
         return items;
-    }
+    };
 
     create = async (dna: string): Promise<string> => {
         try {
@@ -17,5 +17,5 @@ export default class DNAService {
         } catch {
             throw new Error('The item(s) could not be created');
         }
-    }
+    };
 }
