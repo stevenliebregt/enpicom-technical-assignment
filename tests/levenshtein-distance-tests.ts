@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import LevenshteinDistanceService from '../src/services/LevenshteinDistanceService';
 
-describe('Levenshtein Distance Tests', () => {
+describe('LevenshteinDistanceService Tests', () => {
     it('should return true when the source and target are the same', () => {
         // 1. Arrange
         const source = 'kitten';
