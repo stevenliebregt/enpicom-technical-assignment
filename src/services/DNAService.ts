@@ -1,6 +1,6 @@
 export default class DNAService {
 
-    dna: string[];
+    dna: string[] = [];
 
     search = async (dna: string, levenshteinDistance: number): Promise<string> => {
         const items = "temp";
@@ -11,11 +11,11 @@ export default class DNAService {
     };
 
     create = async (dna: string): Promise<string> => {
-        try {
-            this.dna.push("temp");
-            return "temp";
-        } catch {
-            throw new Error('The item(s) could not be created');
+        if (this.dna.indexOf(dna) > -1) {
+            throw new Error(`Could not insert duplicate entry: ${dna}`)
         }
+        this.dna.push(dna);
+
+        return dna;
     };
 }
