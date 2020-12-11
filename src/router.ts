@@ -8,8 +8,8 @@ export default class Router {
     constructor() {
         const dnaController = new DNAController();
 
-        this.router.post('/dna', dnaController.create);
-        this.router.get('/dna', dnaController.search);
+        this.router.post('/store', dnaController.create);
+        this.router.get('/store', dnaController.search);
     }
 
     get = (): express.Router => {

@@ -1,20 +1,30 @@
+import LevenshteinDistanceService from './LevenshteinDistanceService';
+
 export default class DNAService {
 
-    dna: string[] = [];
+    levenshteinDistanceService = new LevenshteinDistanceService();
 
-    search = async (dna: string, levenshteinDistance: number): Promise<string> => {
-        const items = "temp";
-        if (!items) {
-            throw new Error('Items could not be retrieved');
-        }
-        return items;
+    store: string[] = [];
+
+    search = async (query: string, maxDistance: number): Promise<string[]> => {
+        let results: string[] = [];
+
+        // TODO: This is incredibly slow
+        this.store.forEach((entry) => {
+            if (this.levenshteinDistanceService.canBeTransformedInMaxDistance(entry, query, maxDistance)) {
+                results.push(entry);
+            }
+        });
+
+        return results
     };
 
     create = async (dna: string): Promise<string> => {
-        if (this.dna.indexOf(dna) > -1) {
+        if (this.store.indexOf(dna) > -1) {
             throw new Error(`Could not insert duplicate entry: ${dna}`)
         }
-        this.dna.push(dna);
+
+        this.store.push(dna);
 
         return dna;
     };
