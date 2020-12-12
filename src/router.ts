@@ -9,7 +9,7 @@ export default class Router {
         const dnaController = new DNAController();
 
         this.router.post('/dna', dnaController.create);
-        this.router.get('/dna', dnaController.search);
+        this.router.post('/dna/searches', dnaController.search);
     }
 
     get = (): express.Router => {
