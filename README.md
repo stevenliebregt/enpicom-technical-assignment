@@ -69,5 +69,5 @@ sequences of 250 characters costs a lot of memory.
 
 **Different storing method**
 
-*We are aware that this way of storing and searching the strings is not optimal. It would be better to use some sort of tree to store the information. This would make the system more optimal for searching.*
+We are aware that this way of storing and searching the strings is not optimal. It would be better to use some sort of tree to store the information. This would make the system more optimal for searching.
 
