@@ -32,7 +32,7 @@ export default class LevenshteinDistanceService {
         targetLength -= offset;
 
         // Build the comparison matrix.
-        let matrix: any = [];
+        let matrix: number[][] = [];
 
         // Initialize first row.
         for (let i = 0; i <= targetLength; i++) {
@@ -45,7 +45,6 @@ export default class LevenshteinDistanceService {
         }
 
         // Fill the matrix.
-        // TODO: We should be able to quit early if we are exceeding our maxDistance.
         for (let i = 1; i <= targetLength; i++) {
             for (let j = 1; j <= sourceLength; j++) {
                 if (target.charAt(offset + i - 1) == source.charAt(offset + j - 1)) {
@@ -58,13 +57,11 @@ export default class LevenshteinDistanceService {
                             matrix[i - 1][j] + 1)); // Deletion
                 }
             }
+
+            // If the entire row has a cost higher than the maximum cost, we can return.
+            if (Math.min(...matrix[i]) > maxDistance) return false;
         }
 
-        const distance = matrix[targetLength][sourceLength];
-
-        console.table(matrix);
-        console.log(distance);
-
-        return distance <= maxDistance;
+        return matrix[targetLength][sourceLength] <= maxDistance;
     }
 }

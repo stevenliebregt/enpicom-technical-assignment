@@ -113,4 +113,18 @@ describe('LevenshteinDistanceService Tests', () => {
         // 3. Assert
         expect(result).to.be.true;
     });
+
+    it('should return false for a transformation from abcxhry to decghty with a distance of 2', () => {
+        // 1. Arrange
+        const source = 'abcxhry';
+        const target = 'decghty';
+
+        const levenshteinDistanceService = new LevenshteinDistanceService();
+
+        // 2. Act
+        const result = levenshteinDistanceService.canBeTransformedInMaxDistance(source, target, 2);
+
+        // 3. Assert
+        expect(result).to.be.false;
+    });
 });
