@@ -15,6 +15,8 @@ export default class DNAController {
 
         const { id } = req.params;
 
+        // TODO: MaxDistance = optional
+
         await this.dnaService.search(id, 3).then(result => {
             res.json(result);
         }).catch(error => {

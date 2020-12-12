@@ -21,6 +21,26 @@ describe('DNA Service Tests', () => {
         expect(result).to.include.members(['map', 'pan', 'trap']);
     });
 
+    it('should also work without the maxDistance parameter', async () => {
+        // 1. Arrange
+        const dnaService = new DNAService();
+
+        const query = 'nap';
+
+        dnaService.store = [
+            'map', // distance = 1
+            'pan', // distance = 2
+            'trap', // distance = 2
+            'pancake' // distance = 5 (not reachable)
+        ];
+
+        // 2. Act
+        const result = await dnaService.search(query);
+
+        // 3. Assert
+        expect(result).to.include.members(dnaService.store);
+    });
+
     it('should not take really long', async () => {
         // 1. Arrange
         const dnaService = new DNAService();

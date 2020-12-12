@@ -6,7 +6,7 @@ export default class DNAService {
     // TODO: Inject so we can mock the store without having it public
     store: string[] = [];
 
-    search = async (query: string, maxDistance: number): Promise<string[]> => {
+    search = async (query: string, maxDistance: number = Infinity): Promise<string[]> => {
         let results: string[] = [];
 
         // TODO: This is incredibly slow
