@@ -20,10 +20,8 @@ export function errorHandler(error: Error, request: Request, response: Response,
         stack: convertedError.stack,
     };
 
-    //TODO check dev or not
-    if (false) {
-        delete result.stack;
-    }
+    // Delete stack if prod dev or not
+    // delete result.stack;
 
     response.status(result.code);
     response.json(result);

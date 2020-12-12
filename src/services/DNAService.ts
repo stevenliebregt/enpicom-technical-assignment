@@ -7,6 +7,11 @@ export default class DNAService {
     store: string[] = [];
 
     search = async (query: string, maxDistance: number = Infinity): Promise<string[]> => {
+
+        if (!this.validate(query)) {
+            throw new Error("DNA does not match format.")
+        }
+
         let results: string[] = [];
 
         // TODO: This is incredibly slow
@@ -16,10 +21,15 @@ export default class DNAService {
             }
         });
 
-        return results
+        return results;
     };
 
     create = async (dna: string): Promise<string> => {
+
+        if (!this.validate(dna)) {
+            throw new Error("DNA does not match format.")
+        }
+
         if (this.store.indexOf(dna) > -1) {
             throw new Error(`Could not insert duplicate entry: ${dna}`)
         }
@@ -28,4 +38,8 @@ export default class DNAService {
 
         return dna;
     };
+
+    validate = (dna: string): boolean => {
+        return dna.match(/^[ACTG]+$/) != null;
+    }
 }
