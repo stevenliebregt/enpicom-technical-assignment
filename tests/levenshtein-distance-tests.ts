@@ -72,6 +72,20 @@ describe('LevenshteinDistanceService Tests', () => {
         expect(result).to.be.false;
     });
 
+    it('should return true for a transformation from shilling to shipping with a distance of 2', () => {
+        // 1. Arrange
+        const source = 'shilling';
+        const target = 'shipping';
+
+        const levenshteinDistanceService = new LevenshteinDistanceService();
+
+        // 2. Act
+        const result = levenshteinDistanceService.canBeTransformedInMaxDistance(source, target, 2);
+
+        // 3. Assert
+        expect(result).to.be.true;
+    });
+
     it('should test these samples', () => {
         const levenshteinDistanceService = new LevenshteinDistanceService();
 
@@ -83,5 +97,20 @@ describe('LevenshteinDistanceService Tests', () => {
         expect(levenshteinDistanceService.canBeTransformedInMaxDistance('iron man', 'woman', 3)).to.be.false;
         expect(levenshteinDistanceService.canBeTransformedInMaxDistance('iron man', 'woman', 4)).to.be.true;
         expect(levenshteinDistanceService.canBeTransformedInMaxDistance('iron man', 'woman', 5)).to.be.true;
+    });
+
+    // https://www.youtube.com/watch?v=We3YDTzNXEk
+    it('should help me understand it with the same words from the example video', () => {
+        // 1. Arrange
+        const source = 'abcdef';
+        const target = 'azced';
+
+        const levenshteinDistanceService = new LevenshteinDistanceService();
+
+        // 2. Act
+        const result = levenshteinDistanceService.canBeTransformedInMaxDistance(source, target, 3);
+
+        // 3. Assert
+        expect(result).to.be.true;
     });
 });

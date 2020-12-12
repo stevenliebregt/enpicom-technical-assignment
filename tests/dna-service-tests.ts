@@ -58,4 +58,30 @@ describe('DNA Service Tests', () => {
         // 3. Assert
         expect(result).to.include.members(dnaService.store);
     });
+
+    it('should also not take really long', async () => {
+        // 1. Arrange
+        const dnaService = new DNAService();
+
+        const query = 'gcctagtacactgcaacattatagccgtgtggattgaatccgccggttgtgtatcagaacgattccgtcgtctataaatcggtatctggcacttgcccacaaacgtacaccattaaaagttacgtcctagagcccaggtgcgcgaaatgggaaccccgcgtccgctgagtatttggtgaccgtgaaaacaagaacttatgtggtacgtcttgccaagtactctccgttacttgggccaggttggatgtact';
+
+        dnaService.store = [
+            'gcctagtacactgcaacattatagccgtgtggattgaatccgccggttgtgtatcagaacgattccgtcgtctataaatcggtatctggcacttgcccacaaacgtacaccattaaaagttacgtcctagagcccaggtgcgcgaaatgggaaccccgcgtccgctgagtatttggtgaccgtgaaaacaagaacttatgtggtacgtcttgccaagtactctccgttacttgggccaggttggatgtact',
+            'ttgcggtgcttagtctcgtccagggagcctggttgtcttgtaaaaagtttatacgatctgacggcctggaggactaaggagcgctttccctccattacaaaagggcacagtttatcatagttgtgcgttgagtgccaacctcaccggataactcaggcctatcatacattatgcgagcctagtgactgaacacaatcccagaggcagccacttg',
+            'atgtacatgtacattgggtcatgtacgcacttagaaaaccccttataccagggtcggtggcctaggacgacctcggagcgccacgctcaaacgttgcggaggtgccaatttggactttcttcgtggtttgcatacccgtgaacggacctacgaagtaggctggatcaccgaataagctaaagcattcctacctttgtgtcgttgataaaatttctcgtcttagcacagagacgtaccg',
+            'gcacgctcagaagatcttcgtcgactagcacaatagaatttttcactcaacagtggtaatattatatataaccccctacttgaggaatccgtaaagtacccatgactgttattgcgcctatcgcgacttggctgcacccccgaagaattgaagcgggtccggcggtgtcgtgtgccattccagagtcatatgggttctgcaccactggagtagtggctattcgatatcagactcggatttccagacaacgggtcttgcagatgtagagcgcagtcgagcactggtcgaacgatgctc',
+            'gaccaaccttggttacctgcgacgtactgccaagttaccataataatagccgtagggtgagattgatgagatcataagtaaaggtcgggattcttctctcccccttgagctcttgattgtatctagcaggccacaatgactaatagccaatggctggccggtgagagctcctggaactgtagccctaaaaacacggtccagaccgtttcggcagaatcaccggtatcatgccggcgtacgatggttgttcctctgtat',
+            'gcacggaaaaatgcgagaaaatgaatctatttgagacaaggtgggtcggattaaatacgaatcggagcacagcaaggcatcccgacggctctatcttcgctgatttatggggttgttgtttgttgcatgatgcagctcccagtccgactcacattcgtttcccgacctggtcgctcattctctaagcggccctacatgacaagtgcacc',
+            'gtgatagatcacgccggtcaaccacacgcgacagtggacaggaaaaatgaaaggtagcctacgtaggctattaggctgggttccgttgcagaatgaatttaaaaacgatgctgcacgtcccctgcgtttctgaagatgtcacgctcaagtatttcatgttatcgtcaagtatgtttgggtcacactcaggcgtgttcctgtccacctggcatatgcagataagtggctccccgtttgatcggaccagtcgcttcctctctaaagaccgca',
+            'cacgtattaaaatgatccgactccatccccgtattatctcctgaagagaggtgatgcaccaggccgaaaagttcctcctcgtcggtcttataacctatatatgcggtattggtctgctgaagttggccgtggcagaatattgcgcgacatacaagatgaccctgcagagatgctcgtggtcgatctcagcgtacggattccatgtga',
+            'actatcaaaacgcggaacctcaacatggcgctttgtccaggaaatagtctaggagacttactcatgttcgtactacgactagatctgtcctcaatacgagtcatgtttccgcgtcagcccgtcaacttgtccttgggaagaccgacagcggccggggatcgggtaattaaatatcgccctactatctaccacttgaatggtcctcaattcttgcggtccaacaattggagaagctccttgaatgcaggcttagtaggaggcgtagggtcatgcagtcggtg',
+            'tctctcacttacgcattgagtactttgcacaaagtgagggtttcacttgcgagccgctacctattcgccatcacagcaccatgttacaatagggggtgaggacgttaaaccctgacttcattacaagagtcggtggtctatgttcaagtacccgaacatcgttggacgcaggaggcgccccagataattggtgtaccccgtaggatcggcatggataattc',
+        ];
+
+        // 2. Act
+        const result = await dnaService.search(query);
+
+        // 3. Assert
+        expect(result).to.include.members(dnaService.store);
+    });
 });
