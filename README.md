@@ -34,10 +34,10 @@
 
 The following endpoints are available:
 
-`POST @ /dna` with a body containing 
+`POST @ /dna` with a JSON body containing 
 - the key `dna` with a string value consisting of ACTG characters to insert
 
-`POST @ /dna/searches` with a body containing 
+`POST @ /dna/searches` with a JSON body containing 
 - the key `dna` with a string value consisting of ACTG characters to search for
 - (optional) the key `maxDistance` with a number value to limit the editing distance of the Levenshtein algorithm
 
@@ -60,6 +60,10 @@ processing part.
 **Another algorithm that does not use matrices**
 
 *This depends on the length of the search, and the values in the store*
+
+**Another algorithm that does not use matrices**
+
+*We are aware that this way of storing and searching the strings is not optimal. It would be better to use some sort of tree to store the information. This would make the system more optimal for searching.*
 
 We assumed that there might be DNA strings with a length of 250 characters, or more. We do not really know how long those 
 are, if the Wiki is to be believed, those numbers are way higher, maybe into the millions of characters.
