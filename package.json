@@ -4,7 +4,7 @@
    "description": "",
    "main": "src/app.ts",
    "scripts": {
-      "test": "env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register 'tests/**/*.ts'",
+      "test": "cross-env TS_NODE_COMPILER_OPTIONS='{\"module\": \"commonjs\" }' mocha -r ts-node/register 'tests/**/*.ts'",
       "dev": "ts-node-dev ./src/app.ts",
       "build": "tsc",
       "start": "node ./dist/app.js"
@@ -25,6 +25,7 @@
       "@types/mocha": "^8.2.0",
       "@types/node": "^8.0.29",
       "chai": "^4.2.0",
+      "cross-env": "^7.0.3",
       "mocha": "^8.2.1",
       "ts-node": "^9.1.1"
    }

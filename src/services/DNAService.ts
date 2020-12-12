@@ -1,9 +1,9 @@
 import LevenshteinDistanceService from './LevenshteinDistanceService';
 
 export default class DNAService {
+    private levenshteinDistanceService: LevenshteinDistanceService = new LevenshteinDistanceService();
 
-    levenshteinDistanceService = new LevenshteinDistanceService();
-
+    // TODO: Inject so we can mock the store without having it public
     store: string[] = [];
 
     search = async (query: string, maxDistance: number): Promise<string[]> => {
