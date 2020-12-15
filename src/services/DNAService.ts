@@ -40,6 +40,6 @@ export default class DNAService {
     };
 
     validate = (dna: string): boolean => {
-        return dna.match(/^[ACTG]+$/) != null;
+        return dna.match(/^[ACTG]+$/i) != null;
     }
 }
